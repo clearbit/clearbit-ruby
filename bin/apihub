@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+require 'apihub'
+require 'json'
+require 'optparse'
+
+begin
+  require 'awesome_print'
+rescue LoadError
+  def ap(value)
+    puts JSON.pretty_generate(value)
+  end
+end
+
+options = {}
+values  = {}
+
+parser  = OptionParser.new do |opts|
+  opts.banner = "Usage: apihub [options]"
+
+  opts.on("--twitter HANDLE", String, "Twitter handle") do |v|
+    values[:twitter] = v
+  end
+
+  opts.on("--github HANDLE", String, "GitHub handle") do |v|
+    values[:github] = v
+  end
+
+  opts.on("--email EMAIL", String, "Email") do |v|
+    values[:email] = v
+  end
+
+  opts.on("--api-key KEY", String, "APIHub") do |v|
+    options[:api_key] = v
+  end
+end
+
+parser.parse!
+
+if key = ENV['APIHUB_KEY']
+  options[:api_key] ||= key
+end
+
+if values == {}
+  puts parser
+  exit
+end
+
+APIHub.api_key = options[:api_key]
+
+person = APIHub::Person.find(values, options)
+
+if person && person.pending?
+  puts 'Person lookup queued'
+elsif person
+  ap person.to_hash
+else
+  puts 'Person not found'
+end
