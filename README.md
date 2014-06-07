@@ -28,20 +28,16 @@ Then you can lookup people by email address:
 
 If the person can't be found, then `nil` will be returned.
 
-You can also look people up by GitHub and Twitter handle:
-
-    person = APIHub::Person[github: 'maccman']
-    person = APIHub::Person[twitter: 'maccaw']
-
 ## CLI
 
 The gem also includes a `apihub` executable, which you can use like this:
 
-    $ apihub --twitter DanielZarick
+    $ apihub --email info@eribium.org
 
         {
-          "id" => "7baccc21-36a7-436c-8d55-e3d15b61dbdf",
-          "name" => "Daniel Zarick",
-          "headline" => "Developer at 33cc77",
-          "url" => "http://danielzarick.com",
+          "name": {
+            "fullName": "Alex MacCaw",
+            "givenName": "Alex",
+            "familyName": "MacCaw"
+          },
           ...
