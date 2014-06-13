@@ -1,5 +1,5 @@
 module APIHub
-  class Person < Base
+  class Company < Base
     endpoint 'https://company.apihub.co'
     path '/v1/companies'
 

@@ -28,6 +28,8 @@ Then you can lookup people by email address:
 
 If the person can't be found, then `nil` will be returned.
 
+See the [documentation](https://apihub.co/docs/person) for more information.
+
 ## Company lookup
 
 You can lookup company data by domain name:
@@ -36,11 +38,13 @@ You can lookup company data by domain name:
 
 If the company can't be found, then `nil` will be returned.
 
+See the [documentation](https://apihub.co/docs/company) for more information.
+
 ## CLI
 
 The gem also includes a `apihub` executable, which you can use like this:
 
-    $ apihub --email info@eribium.org
+    $ apihub person --email info@eribium.org
 
         {
           "name": {
@@ -48,4 +52,20 @@ The gem also includes a `apihub` executable, which you can use like this:
             "givenName": "Alex",
             "familyName": "MacCaw"
           },
+          ...
+
+Or to look up a company:
+
+    $ apihub company --domain uber.com
+
+        {
+          "name": "Uber",
+          "legalName": "Uber, Inc.",
+          "categories": [
+            "Transport"
+          ],
+          "founders": [
+            "Travis Kalanick",
+            "Garrett Camp"
+          ],
           ...
