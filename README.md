@@ -28,6 +28,14 @@ Then you can lookup people by email address:
 
 If the person can't be found, then `nil` will be returned.
 
+## Company lookup
+
+You can lookup company data by domain name:
+
+    company = APIHub::Company[domain: 'uber.com']
+
+If the company can't be found, then `nil` will be returned.
+
 ## CLI
 
 The gem also includes a `apihub` executable, which you can use like this:

@@ -16,7 +16,7 @@ options = {}
 values  = {}
 
 parser  = OptionParser.new do |opts|
-  opts.banner = "Usage: apihub [options]"
+  opts.banner = "Usage: apihub [person|company] [options]"
 
   opts.on("--twitter HANDLE", String, "Twitter handle") do |v|
     values[:twitter] = v
@@ -30,6 +30,10 @@ parser  = OptionParser.new do |opts|
     values[:email] = v
   end
 
+  opts.on("--domain DOMAIN", String, "Domain") do |v|
+    values[:domain] = v
+  end
+
   opts.on("--api-key KEY", String, "APIHub") do |v|
     options[:api_key] = v
   end
@@ -37,8 +41,14 @@ end
 
 parser.parse!
 
-if key = ENV['APIHUB_KEY']
-  options[:api_key] ||= key
+case ARGV[0]
+when 'person'
+  entity = APIHub::Person
+when 'company'
+  entity = APIHub::Company
+else
+  puts parser
+  exit
 end
 
 if values == {}
@@ -46,14 +56,16 @@ if values == {}
   exit
 end
 
-APIHub.api_key = options[:api_key]
+if key = ENV['APIHUB_KEY']
+  options[:api_key] ||= key
+end
 
-person = APIHub::Person.find(values, options)
+object = entity.find(values, options)
 
-if person && person.pending?
-  puts 'Person lookup queued'
-elsif person
-  ap person.to_hash
+if object && object.pending?
+  puts 'Lookup queued'
+elsif object
+  ap object.to_hash
 else
-  puts 'Person not found'
+  puts 'Not found'
 end
