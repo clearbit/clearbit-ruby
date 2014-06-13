@@ -19,4 +19,5 @@ module APIHub
   end
 
   autoload :Person, 'apihub/person'
+  autoload :Company, 'apihub/company'
 end

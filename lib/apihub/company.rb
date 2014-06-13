@@ -1,7 +1,7 @@
 module APIHub
   class Person < Base
-    endpoint 'https://person.apihub.co'
-    path '/v1/people'
+    endpoint 'https://company.apihub.co'
+    path '/v1/companies'
 
     def self.find(values, options = {})
       unless values.is_a?(Hash)
@@ -11,14 +11,8 @@ module APIHub
       options = options.dup
       params  = options.delete(:params) || {}
 
-      if email = values[:email]
-        response = get(uri(:email, email), params, options)
-
-      elsif twitter = values[:twitter]
-        response = get(uri(:twitter, twitter), params, options)
-
-      elsif github = values[:github]
-        response = get(uri(:github, github), params, options)
+      if domain = values[:domain]
+        response = get(uri(:domain, domain), params, options)
 
       elsif id = values[:id]
         response = get(id, params, options)
