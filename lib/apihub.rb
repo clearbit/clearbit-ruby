@@ -4,8 +4,8 @@ require 'apihub/version'
 module APIHub
   def self.api_key=(value)
     Base.options Base.options.merge(
-      :auth_type => :bearer,
-      :password  => value
+      auth_type: :bearer,
+      password:  value
     )
   end
 
@@ -13,11 +13,9 @@ module APIHub
     self.api_key = value
   end
 
-  class Base < Nestful::Resource
-    endpoint 'https://api.apihub.co'
-    options :format => :json
-  end
-
-  autoload :Person, 'apihub/person'
+  autoload :Base, 'apihub/base'
   autoload :Company, 'apihub/company'
+  autoload :Mash, 'apihub/mash'
+  autoload :Person, 'apihub/person'
+  autoload :Resource, 'apihub/resource'
 end

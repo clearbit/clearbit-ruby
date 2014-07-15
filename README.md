@@ -20,7 +20,7 @@ Or install it yourself as:
 
 First authorize requests by setting the API key found on your [account's settings page](https://apihub.co/profile).
 
-    APIHub.api_key = ENV['SOURCING_KEY']
+    APIHub.api_key = ENV['APIHUB_KEY']
 
 Then you can lookup people by email address:
 
