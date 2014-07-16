@@ -1,6 +1,6 @@
 module APIHub
   class Person < Base
-    endpoint 'https://person-stream.apihub.co'
+    endpoint 'https://person.apihub.co'
     path '/v1/people'
 
     def self.find(values, options = {})
@@ -27,7 +27,11 @@ module APIHub
         raise ArgumentError, 'Invalid values'
       end
 
-      self.new(response)
+      if response.status == 202
+        self.new(pending: true)
+      else
+        self.new(response)
+      end
 
     rescue Nestful::ResourceNotFound
     end

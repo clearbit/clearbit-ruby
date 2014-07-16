@@ -18,4 +18,5 @@ module APIHub
   autoload :Mash, 'apihub/mash'
   autoload :Person, 'apihub/person'
   autoload :Resource, 'apihub/resource'
+  autoload :Streaming, 'apihub/streaming'
 end

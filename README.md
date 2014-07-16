@@ -40,6 +40,21 @@ If the company can't be found, then `nil` will be returned.
 
 See the [documentation](https://apihub.co/docs/company) for more information.
 
+## Streaming requests
+
+Often you'll want people or company lookups to block, rather than return blank `202` requests if we need to look up data. You can do this using APIHub's streaming API.
+
+For example, to look up a company by domain using our streaming API use the `APIHub::Streaming::Company` class:
+
+    company = APIHub::Streaming::Company[domain: 'uber.com']
+
+If we need to lookup the company, we'll block the network request for 10-20 seconds before responding. This is ideal for scenarios where long network requests don't really matter, such as job queues. Often the streaming API will be easier to implement than webhooks.
+
+You can similarity look up people using the `APIHub::Streaming::Person` class.
+
+    person = APIHub::Streaming::Person[email: 'info@eribium.org']
+
+
 ## CLI
 
 The gem also includes a `apihub` executable, which you can use like this:
