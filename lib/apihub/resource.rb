@@ -1,3 +1,5 @@
+require 'uri'
+
 module APIHub
   class Resource < Mash
     def self.endpoint(value = nil)
