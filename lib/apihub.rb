@@ -19,4 +19,5 @@ module APIHub
   autoload :Person, 'apihub/person'
   autoload :Resource, 'apihub/resource'
   autoload :Streaming, 'apihub/streaming'
+  autoload :Watchlist, 'apihub/watchlist'
 end
