@@ -1,6 +1,6 @@
 require 'uri'
 
-module APIHub
+module Clearbit
   class Resource < Mash
     def self.endpoint(value = nil)
       @endpoint = value if value

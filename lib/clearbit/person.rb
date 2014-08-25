@@ -1,6 +1,6 @@
-module APIHub
+module Clearbit
   class Person < Base
-    endpoint 'https://person.apihub.co'
+    endpoint 'https://person.clearbit.co'
     path '/v1/people'
 
     def self.find(values, options = {})

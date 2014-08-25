@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'apihub'
+require 'clearbit'
 require 'json'
 require 'optparse'
 
@@ -16,7 +16,7 @@ options = {}
 values  = {}
 
 parser  = OptionParser.new do |opts|
-  opts.banner = "Usage: apihub [person|company] [options]"
+  opts.banner = "Usage: clearbit [person|company] [options]"
 
   opts.on("--email EMAIL", String, "Email") do |v|
     values[:email] = v
@@ -26,7 +26,7 @@ parser  = OptionParser.new do |opts|
     values[:domain] = v
   end
 
-  opts.on("--api-key KEY", String, "APIHub") do |v|
+  opts.on("--api-key KEY", String, "Clearbit") do |v|
     options[:api_key] = v
   end
 end
@@ -35,9 +35,9 @@ parser.parse!
 
 case ARGV[0]
 when 'person'
-  entity = APIHub::Streaming::Person
+  entity = Clearbit::Streaming::Person
 when 'company'
-  entity = APIHub::Streaming::Company
+  entity = Clearbit::Streaming::Company
 else
   puts parser
   exit
@@ -53,7 +53,7 @@ if key = ENV['APIHUB_KEY']
 end
 
 if key = options.delete(:api_key)
-  APIHub.api_key = key
+  Clearbit.api_key = key
 else
   puts 'API Key required'
   puts parser

@@ -1,4 +1,4 @@
-module APIHub
+module Clearbit
   class Mash < Hash
     def self.new(value = nil, *args)
       if value.respond_to?(:each) &&

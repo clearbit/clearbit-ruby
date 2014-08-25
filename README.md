@@ -1,12 +1,12 @@
-# APIHub
+# Clearbit
 
-A Ruby API client to [https://apihub.co](https://apihub.co).
+A Ruby API client to [https://clearbit.co](https://clearbit.co).
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'apihub'
+    gem 'clearbit'
 
 And then execute:
 
@@ -14,37 +14,37 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install apihub
+    $ gem install clearbit
 
 ## Usage
 
-First authorize requests by setting the API key found on your [account's settings page](https://apihub.co/profile).
+First authorize requests by setting the API key found on your [account's settings page](https://clearbit.co/profile).
 
-    APIHub.api_key = ENV['APIHUB_KEY']
+    Clearbit.api_key = ENV['APIHUB_KEY']
 
 Then you can lookup people by email address:
 
-    person = APIHub::Person[email: 'info@eribium.org']
+    person = Clearbit::Person[email: 'info@eribium.org']
 
 If the person can't be found, then `nil` will be returned.
 
-See the [documentation](https://apihub.co/docs/person) for more information.
+See the [documentation](https://clearbit.co/docs/person) for more information.
 
 ## Company lookup
 
 You can lookup company data by domain name:
 
-    company = APIHub::Company[domain: 'uber.com']
+    company = Clearbit::Company[domain: 'uber.com']
 
 If the company can't be found, then `nil` will be returned.
 
-See the [documentation](https://apihub.co/docs/company) for more information.
+See the [documentation](https://clearbit.co/docs/company) for more information.
 
 ## CLI
 
-The gem also includes a `apihub` executable, which you can use like this:
+The gem also includes a `clearbit` executable, which you can use like this:
 
-    $ apihub person --email info@eribium.org
+    $ clearbit person --email info@eribium.org
 
         {
           "name": {
@@ -56,7 +56,7 @@ The gem also includes a `apihub` executable, which you can use like this:
 
 Or to look up a company:
 
-    $ apihub company --domain uber.com
+    $ clearbit company --domain uber.com
 
         {
           "name": "Uber",

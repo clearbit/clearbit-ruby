@@ -1,6 +1,6 @@
-module APIHub
+module Clearbit
   class Watchlist < Base
-    endpoint 'https://watchlist.apihub.co'
+    endpoint 'https://watchlist.clearbit.co'
     path '/v1/search/all'
 
     def self.search(name, options = {})

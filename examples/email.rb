@@ -1,6 +1,6 @@
-require 'apihub'
+require 'clearbit'
 require 'pp'
 
-APIHub.api_key = ENV['APIHUB_KEY']
+Clearbit.api_key = ENV['CLEARBIT_KEY']
 
-pp APIHub::Person[email: 'info@eribium.org']
+pp Clearbit::Person[email: 'info@eribium.org']

@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'apihub/version'
+require 'clearbit/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "apihub"
-  spec.version       = APIHub::VERSION
+  spec.name          = "clearbit"
+  spec.version       = Clearbit::VERSION
   spec.authors       = ["Alex MacCaw"]
-  spec.email         = ["alex@apihub.co"]
-  spec.description   = %q{API client for apihub.co}
-  spec.summary       = %q{API client for apihub.co}
-  spec.homepage      = "https://github.com/maccman/apihub-ruby"
+  spec.email         = ["alex@clearbit.co"]
+  spec.description   = %q{API client for clearbit.co}
+  spec.summary       = %q{API client for clearbit.co}
+  spec.homepage      = "https://github.com/maccman/clearbit-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
