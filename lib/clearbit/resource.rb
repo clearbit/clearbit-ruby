@@ -58,7 +58,7 @@ module Clearbit
     def self.request(url, options = {})
       options = Nestful::Helpers.deep_merge(self.options, options)
 
-      self.new Nestful::Request.new(
+      Nestful::Request.new(
         url, options
       ).execute
     end
