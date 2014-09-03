@@ -20,7 +20,7 @@ Or install it yourself as:
 
 First authorize requests by setting the API key found on your [account's settings page](https://clearbit.co/profile).
 
-    Clearbit.api_key = ENV['APIHUB_KEY']
+    Clearbit.key = ENV['CLEARBIT_KEY']
 
 Then you can lookup people by email address:
 
