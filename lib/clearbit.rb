@@ -21,3 +21,5 @@ module Clearbit
   autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
 end
+
+APIHub = Clearbit
