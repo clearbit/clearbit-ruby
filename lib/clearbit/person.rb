@@ -23,6 +23,10 @@ module Clearbit
         params.merge!(subscribe: subscribe)
       end
 
+      if company = options.delete(:company)
+        params.merge!(company: company)
+      end
+
       if email = values[:email]
         response = get(uri(:email, email), params, options)
 
