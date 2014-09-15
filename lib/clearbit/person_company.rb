@@ -1,7 +1,7 @@
 module Clearbit
-  class Person < Base
+  class PersonCompany < Base
     endpoint 'https://person.clearbit.co'
-    path '/v1/people'
+    path '/v1/combined'
 
     def self.find(values, options = {})
       unless values.is_a?(Hash)
@@ -25,16 +25,6 @@ module Clearbit
 
       if email = values[:email]
         response = get(uri(:email, email), params, options)
-
-      elsif twitter = values[:twitter]
-        response = get(uri(:twitter, twitter), params, options)
-
-      elsif github = values[:github]
-        response = get(uri(:github, github), params, options)
-
-      elsif id = values[:id]
-        response = get(id, params, options)
-
       else
         raise ArgumentError, 'Invalid values'
       end
@@ -44,7 +34,6 @@ module Clearbit
       else
         self.new(response)
       end
-
     rescue Nestful::ResourceNotFound
     end
 
