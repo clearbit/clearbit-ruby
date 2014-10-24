@@ -3,17 +3,8 @@ module Clearbit
     endpoint 'https://watchlist.clearbit.co'
     path '/v1/search/all'
 
-    def self.search(name, options = {})
-      options = options.dup
-      params  = options.delete(:params) || {}
-
-      params  = {
-        name:      name,
-        threshold: options.delete(:threshold) || 1.0
-      }.merge(params)
-
+    def self.search(params, options = {})
       response = post('', params, options)
-
       self.new(response)
     end
 
