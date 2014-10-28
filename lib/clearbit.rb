@@ -21,4 +21,8 @@ module Clearbit
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
+
+  if clearbit_key = ENV['CLEARBIT_KEY']
+    Clearbit.key = clearbit_key
+  end
 end
