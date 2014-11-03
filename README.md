@@ -24,21 +24,21 @@ First authorize requests by setting the API key found on your [account's setting
 
 Then you can lookup people by email address:
 
-    person = Clearbit::Person[email: 'info@eribium.org']
+    person = Clearbit::Streaming::Person[email: 'info@eribium.org']
 
 If the person can't be found, then `nil` will be returned.
 
-See the [documentation](https://clearbit.co/docs/person) for more information.
+See the [documentation](https://clearbit.co/docs#person-api) for more information.
 
 ## Company lookup
 
 You can lookup company data by domain name:
 
-    company = Clearbit::Company[domain: 'uber.com']
+    company = Clearbit::Streaming::Company[domain: 'uber.com']
 
 If the company can't be found, then `nil` will be returned.
 
-See the [documentation](https://clearbit.co/docs/company) for more information.
+See the [documentation](https://clearbit.co/docs#company-api) for more information.
 
 ## CLI
 
