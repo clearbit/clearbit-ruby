@@ -1,6 +1,6 @@
 module Clearbit
   class PersonCompany < Base
-    endpoint 'https://person.clearbit.co'
+    endpoint 'https://person.clearbit.com'
     path '/v1/combined'
 
     def self.find(values, options = {})

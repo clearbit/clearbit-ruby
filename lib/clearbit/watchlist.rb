@@ -1,6 +1,6 @@
 module Clearbit
   class Watchlist < Base
-    endpoint 'https://watchlist.clearbit.co'
+    endpoint 'https://watchlist.clearbit.com'
     path '/v1/search/all'
 
     def self.search(params, options = {})

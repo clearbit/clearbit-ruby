@@ -1,6 +1,6 @@
 # Clearbit
 
-A Ruby API client to [https://clearbit.co](https://clearbit.co).
+A Ruby API client to [https://clearbit.com](https://clearbit.com).
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-First authorize requests by setting the API key found on your [account's settings page](https://clearbit.co/profile).
+First authorize requests by setting the API key found on your [account's settings page](https://clearbit.com/profile).
 
     Clearbit.key = ENV['CLEARBIT_KEY']
 
@@ -28,7 +28,7 @@ Then you can lookup people by email address:
 
 If the person can't be found, then `nil` will be returned.
 
-See the [documentation](https://clearbit.co/docs#person-api) for more information.
+See the [documentation](https://clearbit.com/docs#person-api) for more information.
 
 ## Company lookup
 
@@ -38,7 +38,7 @@ You can lookup company data by domain name:
 
 If the company can't be found, then `nil` will be returned.
 
-See the [documentation](https://clearbit.co/docs#company-api) for more information.
+See the [documentation](https://clearbit.com/docs#company-api) for more information.
 
 ## CLI
 

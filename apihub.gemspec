@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "clearbit"
   spec.version       = Clearbit::VERSION
   spec.authors       = ["Alex MacCaw"]
-  spec.email         = ["alex@clearbit.co"]
-  spec.description   = %q{API client for clearbit.co}
-  spec.summary       = %q{API client for clearbit.co}
+  spec.email         = ["alex@clearbit.com"]
+  spec.description   = %q{API client for clearbit.com}
+  spec.summary       = %q{API client for clearbit.com}
   spec.homepage      = "https://github.com/maccman/clearbit-ruby"
   spec.license       = "MIT"
 
