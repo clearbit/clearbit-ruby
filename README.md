@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-First authorize requests by setting the API key found on your [account's settings page](https://clearbit.com/profile).
+First authorize requests by setting the API key found on your [account's settings page](https://clearbit.com/keys).
 
     Clearbit.key = ENV['CLEARBIT_KEY']
 
