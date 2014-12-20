@@ -24,7 +24,7 @@ First authorize requests by setting the API key found on your [account's setting
 
 Then you can lookup people by email address:
 
-    person = Clearbit::Streaming::Person[email: 'info@eribium.org']
+    person = Clearbit::Streaming::Person[email: 'alex@alexmaccaw.com']
 
 If the person can't be found, then `nil` will be returned.
 
@@ -44,7 +44,7 @@ See the [documentation](https://clearbit.com/docs#company-api) for more informat
 
 The gem also includes a `clearbit` executable, which you can use like this:
 
-    $ clearbit person --email info@eribium.org
+    $ clearbit person --email alex@alexmaccaw.com
 
         {
           "name": {

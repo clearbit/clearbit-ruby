@@ -62,5 +62,9 @@ module Clearbit
         url, options
       ).execute
     end
+
+    def uri(*parts)
+      id ? self.class.uri(id, *parts) : self.class.uri(*parts)
+    end
   end
 end

@@ -1,4 +1,4 @@
 require 'clearbit'
 require 'pp'
 
-pp Clearbit::Person[email: 'info@eribium.org']
+pp Clearbit::Person[email: 'alex@alexmaccaw.com']

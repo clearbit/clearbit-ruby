@@ -51,5 +51,9 @@ module Clearbit
     class << self
       alias_method :[], :find
     end
+
+    def flag!(attrs = {})
+      self.class.post(uri('flag'), attrs)
+    end
   end
 end
