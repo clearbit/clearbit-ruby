@@ -1,4 +1,4 @@
 require 'clearbit'
 require 'pp'
 
-pp Clearbit::Company[domain: 'stripe.com']
+pp Clearbit::Company.find(domain: 'stripe.com')
