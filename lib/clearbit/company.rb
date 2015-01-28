@@ -11,7 +11,7 @@ module Clearbit
       if old_options
         # Deprecated API
         warn '[DEPRECATION] passing multiple args to find() is deprecated'
-        values.merge!(old_options)
+        (values[:request] ||= {}).merge!(old_options)
       end
 
       options = values.delete(:request) || {}
