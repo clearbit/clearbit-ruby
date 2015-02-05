@@ -143,12 +143,10 @@ module Clearbit
     def method_missing(method_name, *args, &blk)
       return self.[](method_name, &blk) if key?(method_name)
 
-      underscored_name = underscore(method_name.to_s)
+      camelized_name = camelize(method_name.to_s)
 
-      if key?(underscored_name)
-        warn 'camelCased property names are deprecated. ' + '
-              Please use underscored properties.'
-        return self.[](underscored_name, &blk)
+      if key?(camelized_name)
+        return self.[](camelized_name, &blk)
       end
 
       match = method_name.to_s.match(/(.*?)([?=!_]?)$/)
@@ -169,17 +167,14 @@ module Clearbit
 
     protected
 
-    def underscore(camel_cased_word)
-      word = camel_cased_word.to_s.gsub('::', '/')
-      word.gsub!(/([A-Z\d]+)([A-Z][a-z])/,'\1_\2')
-      word.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
-      word.tr!("-", "_")
-      word.downcase!
-      word
+    def camelize(string)
+      string = string.to_s
+      string = string.sub(/^(?:(?=\b|[A-Z_])|\w)/) { $&.downcase }
+      string.gsub(/(?:_|(\/))([a-z\d]*)/i) { "#{$1}#{$2.capitalize}" }.gsub('/', '::')
     end
 
     def convert_key(key) #:nodoc:
-      underscore(key.to_s)
+      key.to_s
     end
 
     def convert_value(val, duping=false) #:nodoc:
