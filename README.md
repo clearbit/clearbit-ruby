@@ -6,7 +6,9 @@ A Ruby API client to [https://clearbit.com](https://clearbit.com).
 
 Add this line to your application's Gemfile:
 
-    gem 'clearbit'
+``` ruby
+gem 'clearbit'
+```
 
 And then execute:
 
@@ -20,11 +22,15 @@ Or install it yourself as:
 
 First authorize requests by setting the API key found on your [account's settings page](https://clearbit.com/keys).
 
-    Clearbit.key = ENV['CLEARBIT_KEY']
+``` ruby
+Clearbit.key = ENV['CLEARBIT_KEY']
+```
 
 Then you can lookup people by email address:
 
-    person = Clearbit::Streaming::Person[email: 'alex@alexmaccaw.com']
+``` ruby
+person = Clearbit::Streaming::Person[email: 'alex@alexmaccaw.com']
+```
 
 If the person can't be found, then `nil` will be returned.
 
@@ -34,7 +40,9 @@ See the [documentation](https://clearbit.com/docs#person-api) for more informati
 
 You can lookup company data by domain name:
 
-    company = Clearbit::Streaming::Company[domain: 'uber.com']
+``` ruby
+company = Clearbit::Streaming::Company[domain: 'uber.com']
+```
 
 If the company can't be found, then `nil` will be returned.
 
