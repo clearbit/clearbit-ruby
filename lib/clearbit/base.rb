@@ -4,12 +4,12 @@ module Clearbit
     options :format => :json
 
     def self.version=(value)
-      options headers: {'API-Version' => value}
+      add_options headers: {'API-Version' => value}
     end
 
     def self.key=(value)
-      options auth_type: :bearer,
-              password:  value
+      add_options auth_type: :bearer,
+                  password:  value
     end
   end
 end

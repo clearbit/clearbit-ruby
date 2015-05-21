@@ -29,6 +29,7 @@ module Clearbit
       alias_method :endpoint=, :endpoint
       alias_method :path=, :path
       alias_method :options=, :options
+      alias_method :add_options, :options
     end
 
     def self.url
