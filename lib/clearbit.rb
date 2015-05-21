@@ -3,14 +3,11 @@ require 'clearbit/version'
 
 module Clearbit
   def self.api_key=(value)
-    Base.options Base.options.merge(
-      auth_type: :bearer,
-      password:  value
-    )
+    Base.key = value
   end
 
   def self.key=(value)
-    self.api_key = value
+    Base.key = value
   end
 
   autoload :Base, 'clearbit/base'
