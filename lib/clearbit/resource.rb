@@ -15,15 +15,21 @@ module Clearbit
     end
 
     def self.options(value = nil)
-      @options = value if value
-      return @options if @options
-      superclass.respond_to?(:options) ? superclass.options : {}
+      @options ||= {}
+      @options.merge!(value) if value
+
+      if superclass.respond_to?(:options)
+        Nestful::Helpers.deep_merge(superclass.options, @options)
+      else
+        @options
+      end
     end
 
     class << self
       alias_method :endpoint=, :endpoint
       alias_method :path=, :path
       alias_method :options=, :options
+      alias_method :add_options, :options
     end
 
     def self.url
