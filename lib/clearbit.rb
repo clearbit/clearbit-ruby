@@ -18,6 +18,7 @@ module Clearbit
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
+  autoload :WebhookSignature, 'clearbit/webhook_signature'
 
   if clearbit_key = ENV['CLEARBIT_KEY']
     Clearbit.key = clearbit_key

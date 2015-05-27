@@ -77,3 +77,24 @@ Or to look up a company:
             "Garrett Camp"
           ],
           ...
+
+## Secure Webhooks
+
+Use the `.valid?` function to verify the webhook is from trusted party:
+
+``` ruby
+post '/v1/webhooks/apihub' do
+  request.body.rewind
+  payload_body = request.body.read
+
+  unless Clearbit::WebhookSignature.valid?(signature, payload_body)
+    halt 500, "Abort mission. Signatures didn't match!"
+  end
+
+  # ...
+end
+
+def signature
+  request.env['HTTP_X_REQUEST_SIGNATURE']
+end
+```
