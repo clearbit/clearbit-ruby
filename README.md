@@ -85,7 +85,7 @@ For rack apps use the `WebhookResponse` module to wrap deserialization and verif
 ``` ruby
 post '/v1/webhooks/apihub' do
   webhook = Clearbit::WebhookResponse.new(request)
-  webhook.type #= 'person'
+  webhook.type #=> 'person'
   webhook.body.name.given_name #=> 'Alex'
 
   # ...
