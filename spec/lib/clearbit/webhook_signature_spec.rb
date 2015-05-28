@@ -1,23 +1,23 @@
 require 'spec_helper'
 
-describe Clearbit::WebhookSignature, '.valid?' do
-  context 'valid HMAC signature' do
+describe Clearbit::WebhookSignature, '.validate!' do
+  context 'valid signature' do
     it 'returns true' do
       signature = generate_signature('A-OK')
 
-      result = Clearbit::WebhookSignature.valid?(signature, 'A-OK')
+      result = Clearbit::WebhookSignature.validate!(signature, 'A-OK')
 
       expect(result).to eq true
     end
   end
 
-  context 'invalid HMAC signature' do
+  context 'invalid signature' do
     it 'returns false' do
       signature = generate_signature('A-OK')
 
-      result = Clearbit::WebhookSignature.valid?(signature, 'TAMPERED_WITH_BODY_BEWARE!')
-
-      expect(result).to eq false
+      expect {
+        Clearbit::WebhookSignature.validate!(signature, 'TAMPERED_WITH_BODY_BEWARE!')
+      }.to raise_error(Clearbit::Errors::InvalidWebhookSignature)
     end
   end
 

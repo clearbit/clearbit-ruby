@@ -78,23 +78,18 @@ Or to look up a company:
           ],
           ...
 
-## Secure Webhooks
+## Webhooks
 
-Use the `.valid?` function to verify the webhook is from trusted party:
+For rack apps use the `WebhookResponse` module to wrap deserialization and verify the webhook is from trusted party:
 
 ``` ruby
 post '/v1/webhooks/apihub' do
-  request.body.rewind
-  payload_body = request.body.read
-
-  unless Clearbit::WebhookSignature.valid?(signature, payload_body)
-    halt 500, "Abort mission. Signatures didn't match!"
-  end
+  webhook = Clearbit::WebhookResponse.new(request)
+  webhook.type #= 'person'
+  webhook.body.name.given_name #=> 'Alex'
 
   # ...
-end
-
-def signature
-  request.env['HTTP_X_REQUEST_SIGNATURE']
+rescue Clearbit::Errors::InvalidWebhookSignature => e
+  # ...
 end
 ```

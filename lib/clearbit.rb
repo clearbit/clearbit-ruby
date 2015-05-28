@@ -18,7 +18,12 @@ module Clearbit
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
+  autoload :WebhookResponse, 'clearbit/webhook_response'
   autoload :WebhookSignature, 'clearbit/webhook_signature'
+
+  module Errors
+    autoload :InvalidWebhookSignature, 'clearbit/errors/invalid_webhook_signature'
+  end
 
   if clearbit_key = ENV['CLEARBIT_KEY']
     Clearbit.key = clearbit_key

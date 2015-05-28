@@ -3,9 +3,14 @@ require 'openssl'
 
 module Clearbit
   module WebhookSignature
-    def self.valid?(request_signature, webhook_body)
+    def self.validate!(request_signature, webhook_body)
       signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), clearbit_key, webhook_body)
-      Rack::Utils.secure_compare(signature, request_signature)
+
+      if Rack::Utils.secure_compare(signature, request_signature)
+        true
+      else
+        raise Errors::InvalidWebhookSignature
+      end
     end
 
     def self.clearbit_key
