@@ -7,7 +7,7 @@ module Clearbit
 
       WebhookSignature.validate!(request_signature, request_body)
 
-      Mash.from_json(request_body)
+      Mash.new(JSON.parse(request_body))
     end
   end
 end
