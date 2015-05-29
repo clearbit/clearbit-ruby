@@ -10,6 +10,14 @@ module Clearbit
     Base.key = value
   end
 
+  def self.key
+    Base.key
+  end
+
+  def self.key!
+    key || raise('Clearbit.key not set')
+  end
+
   autoload :Base, 'clearbit/base'
   autoload :Company, 'clearbit/company'
   autoload :Mash, 'clearbit/mash'
@@ -18,8 +26,7 @@ module Clearbit
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
-  autoload :WebhookResponse, 'clearbit/webhook_response'
-  autoload :WebhookSignature, 'clearbit/webhook_signature'
+  autoload :Webhook, 'clearbit/webhook'
 
   module Errors
     autoload :InvalidWebhookSignature, 'clearbit/errors/invalid_webhook_signature'

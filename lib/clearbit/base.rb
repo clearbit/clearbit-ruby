@@ -10,6 +10,12 @@ module Clearbit
     def self.key=(value)
       add_options auth_type: :bearer,
                   password:  value
+
+      @key = value
+    end
+
+    def self.key
+      @key
     end
   end
 end
