@@ -80,16 +80,18 @@ Or to look up a company:
 
 ## Webhooks
 
-For rack apps use the `WebhookResponse` module to wrap deserialization and verify the webhook is from trusted party:
+For rack apps use the `Clearbit::Webhook` module to wrap deserialization and verify the webhook is from trusted party:
 
 ``` ruby
 post '/v1/webhooks/apihub' do
-  webhook = Clearbit::WebhookResponse.new(request)
-  webhook.type #=> 'person'
-  webhook.body.name.given_name #=> 'Alex'
+  begin
+    webhook = Clearbit::Webhook.new(env)
+    webhook.type #=> 'person'
+    webhook.body.name.given_name #=> 'Alex'
 
-  # ...
-rescue Clearbit::Errors::InvalidWebhookSignature => e
-  # ...
+    # ...
+  rescue Clearbit::Errors::InvalidWebhookSignature => e
+    # ...
+  end
 end
 ```
