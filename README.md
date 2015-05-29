@@ -83,7 +83,7 @@ Or to look up a company:
 For rack apps use the `Clearbit::Webhook` module to wrap deserialization and verify the webhook is from trusted party:
 
 ``` ruby
-post '/v1/webhooks/apihub' do
+post '/v1/webhooks/clearbit' do
   begin
     webhook = Clearbit::Webhook.new(env)
     webhook.type #=> 'person'
