@@ -23,6 +23,7 @@ module Clearbit
   autoload :Mash, 'clearbit/mash'
   autoload :Person, 'clearbit/person'
   autoload :PersonCompany, 'clearbit/person_company'
+  autoload :Prospector, 'clearbit/prospector'
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
