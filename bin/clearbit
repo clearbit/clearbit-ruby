@@ -48,7 +48,7 @@ if values == {}
   exit
 end
 
-if key = ENV['APIHUB_KEY']
+if key = ENV['CLEARBIT_KEY']
   options[:api_key] ||= key
 end
 
