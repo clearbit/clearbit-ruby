@@ -20,7 +20,7 @@ module Clearbit
       encoded_params = URI.encode_www_form(params)
 
       if domain = values.delete(:domain)
-        raise ArgumentError, 'Invalid domain' unless domain =~ /^([a-z0-9]+)*\.[a-z]{2,5}$/
+        raise ArgumentError, 'Invalid domain' unless domain =~ /^[a-z0-9\-]+([\.]{1}[a-z0-9\-]+)*\.[a-z]{2,5}$/
         if encoded_params.empty?
           "#{ENDPOINT}/#{domain}"
         else
