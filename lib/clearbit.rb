@@ -20,6 +20,7 @@ module Clearbit
 
   autoload :Base, 'clearbit/base'
   autoload :Company, 'clearbit/company'
+  autoload :CompanySearch, 'clearbit/company_search'
   autoload :Logo, 'clearbit/logo'
   autoload :Mash, 'clearbit/mash'
   autoload :Person, 'clearbit/person'
