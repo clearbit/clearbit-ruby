@@ -29,7 +29,6 @@ module Clearbit
       else
         raise ArgumentError, 'Invalid values'
       end
-
     end
 
     class << self

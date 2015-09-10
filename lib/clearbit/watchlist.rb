@@ -3,8 +3,8 @@ module Clearbit
     endpoint 'https://watchlist.clearbit.com'
     path '/v1/search/all'
 
-    def self.search(params, options = {})
-      response = post('', params, options)
+    def self.search(values)
+      response = post('', values)
       self.new(response)
     end
 
@@ -19,18 +19,18 @@ module Clearbit
     class Candidate < Watchlist
       path '/v1/candidates'
 
-      def self.find(id, options = {})
-        response = get(id, {}, options)
+      def self.find(id, values)
+        response = get(id, values)
         self.new(response)
       end
 
-      def self.all(options = {})
-        response = get('', {}, options)
+      def self.all(values)
+        response = get('', values)
         self.new(response)
       end
 
-      def self.create(params, options = {})
-        response = post('', params, options)
+      def self.create(values)
+        response = post('', values)
         self.new(response)
       end
 

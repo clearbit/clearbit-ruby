@@ -29,10 +29,13 @@ Clearbit.key = ENV['CLEARBIT_KEY']
 Then you can lookup people by email address:
 
 ``` ruby
-person = Clearbit::Streaming::Person[email: 'alex@alexmaccaw.com']
+result = Clearbit::Enrichment.find(email: 'alex@alexmaccaw.com', stream: true)
+
+person  = result.person
+company = result.company
 ```
 
-If the person can't be found, then `nil` will be returned.
+If a person or company can't be found, then they'll be `nil`.
 
 See the [documentation](https://clearbit.com/docs#person-api) for more information.
 
@@ -41,42 +44,12 @@ See the [documentation](https://clearbit.com/docs#person-api) for more informati
 You can lookup company data by domain name:
 
 ``` ruby
-company = Clearbit::Streaming::Company[domain: 'uber.com']
+company = Clearbit::Enrichment::Company.find(domain: 'uber.com', stream: true)
 ```
 
 If the company can't be found, then `nil` will be returned.
 
 See the [documentation](https://clearbit.com/docs#company-api) for more information.
-
-## CLI
-
-The gem also includes a `clearbit` executable, which you can use like this:
-
-    $ clearbit person --email alex@alexmaccaw.com
-
-        {
-          "name": {
-            "fullName": "Alex MacCaw",
-            "givenName": "Alex",
-            "familyName": "MacCaw"
-          },
-          ...
-
-Or to look up a company:
-
-    $ clearbit company --domain uber.com
-
-        {
-          "name": "Uber",
-          "legalName": "Uber, Inc.",
-          "categories": [
-            "Transport"
-          ],
-          "founders": [
-            "Travis Kalanick",
-            "Garrett Camp"
-          ],
-          ...
 
 ## Webhooks
 

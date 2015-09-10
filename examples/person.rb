@@ -1,4 +1,4 @@
 require 'clearbit'
 require 'pp'
 
-pp Clearbit::Person.find(email: 'alex@alexmaccaw.com')
+pp Clearbit::Enrichment::Person.find(email: 'alex@alexmaccaw.com')

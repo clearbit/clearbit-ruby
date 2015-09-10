@@ -32,7 +32,7 @@ module Clearbit
       alias_method :add_options, :options
     end
 
-    def self.url
+    def self.url(options = {})
       URI.join(endpoint.to_s, path.to_s).to_s
     end
 
@@ -42,35 +42,70 @@ module Clearbit
         return uri if uri.host
       end
 
-      URI.parse(Nestful::Helpers.to_path(url, *parts))
+      value = Nestful::Helpers.to_path(url, *parts)
+
+      URI.parse(value)
     end
 
-    def self.get(action = '', params = {}, options = {})
-      request(uri(action), options.merge(method: :get, params: params))
+    OPTION_KEYS = %i{
+      params key headers stream
+      proxy user password auth_type
+      timeout ssl_options
+    }
+
+    def self.parse_values(values)
+      params  = values.reject {|k,_| OPTION_KEYS.include?(k) }
+      options = values.select {|k,_| OPTION_KEYS.include?(k) }
+
+      [params, options]
     end
 
-    def self.put(action = '', params = {}, options = {})
-      request(uri(action), options.merge(method: :put, params: params))
+    def self.get(action = '', values = {})
+      params, options = parse_values(values)
+
+      request(
+        uri(action),
+        options.merge(method: :get, params: params))
     end
 
-    def self.post(action = '', params = {}, options = {})
-      request(uri(action), options.merge(method: :post, params: params))
+    def self.put(action = '', values = {})
+      params, options = parse_values(values)
+
+      request(
+        uri(action),
+        options.merge(method: :put, params: params, format: :json))
     end
 
-    def self.delete(action = '', params = {}, options = {})
-      request(uri(action), options.merge(method: :delete, params: params))
+    def self.post(action = '', values = {})
+      params, options = parse_values(values)
+
+      request(
+        uri(action),
+        options.merge(method: :post, params: params, format: :json))
     end
 
-    def self.request(url, options = {})
+    def self.delete(action = '', values = {})
+      params, options = parse_values(values)
+
+      request(
+        uri(action),
+        options.merge(method: :delete, params: params))
+    end
+
+    def self.request(uri, options = {})
       options = Nestful::Helpers.deep_merge(self.options, options)
 
+      if options[:stream]
+        uri.host = uri.host.gsub('.clearbit.com', '-stream.clearbit.com')
+      end
+
       Nestful::Request.new(
-        url, options
+        uri, options
       ).execute
     end
 
     def uri(*parts)
-      id ? self.class.uri(id, *parts) : self.class.uri(*parts)
+      self.class.uri(*[id, *parts].compact)
     end
   end
 end
