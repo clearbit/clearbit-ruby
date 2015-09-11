@@ -26,7 +26,6 @@ module Clearbit
 
         if results.any?
           search = Discovery.search(
-            @params[:query],
             @params.merge(page: page + 1)
           )
           search.each(&block)
@@ -35,10 +34,6 @@ module Clearbit
     end
 
     def self.search(values = {})
-      if query = values[:query] && query.is_a?(Hash)
-        values[:query] = [query]
-      end
-
       response = post('', values)
 
       PagedResult.new(values, response)

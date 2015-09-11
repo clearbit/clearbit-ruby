@@ -36,4 +36,8 @@ module Clearbit
   if clearbit_key = ENV['CLEARBIT_KEY']
     Clearbit.key = clearbit_key
   end
+
+  # Backwards compatibility
+  Person  = Enrichment::Person
+  Company = Enrichment::Company
 end
