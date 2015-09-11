@@ -34,9 +34,10 @@ module Clearbit
       end
     end
 
-    def self.search(query, values = {})
-      query  = [query] if query.is_a?(Hash)
-      values = values.merge(query: query)
+    def self.search(values = {})
+      if query = values[:query] && query.is_a?(Hash)
+        values[:query] = [query]
+      end
 
       response = post('', values)
 
