@@ -20,7 +20,7 @@ module Clearbit
         end
 
         if response.status == 202
-          self.new(pending: true)
+          Pending.new
         else
           self.new(response)
         end

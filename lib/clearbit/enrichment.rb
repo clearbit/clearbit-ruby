@@ -6,7 +6,13 @@ module Clearbit
 
     def find(values)
       if domain = values[:domain]
-        Company.find(values)
+        result = Company.find(values)
+
+        if result.pending?
+          Pending.new
+        else
+          PersonCompany.new(company: result)
+        end
       else
         PersonCompany.find(values)
       end

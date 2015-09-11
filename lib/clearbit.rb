@@ -23,6 +23,7 @@ module Clearbit
   autoload :Discovery, 'clearbit/discovery'
   autoload :Logo, 'clearbit/logo'
   autoload :Mash, 'clearbit/mash'
+  autoload :Pending, 'clearbit/pending'
   autoload :Prospector, 'clearbit/prospector'
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'

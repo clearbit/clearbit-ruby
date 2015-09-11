@@ -17,5 +17,9 @@ module Clearbit
     def self.key
       @key
     end
+
+    def pending?
+      false
+    end
   end
 end
