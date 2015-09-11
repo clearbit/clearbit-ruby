@@ -5,16 +5,14 @@ describe Clearbit::Discovery do
     Clearbit.key = 'clearbit_key'
   end
 
-  context 'Discovery API' do
-    it 'should call out to the Discovery API' do
-      body  = []
-      query = {query: [{name: 'stripe'}]}
+  it 'should call out to the Discovery API' do
+    body  = []
+    query = {query: [{name: 'stripe'}]}
 
-      stub_request(:post, "https://discovery.clearbit.com/v1/companies/search").
-        with(:headers => {'Authorization'=>'Bearer clearbit_key'}, body: query.to_json).
-        to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
+    stub_request(:post, "https://discovery.clearbit.com/v1/companies/search").
+      with(:headers => {'Authorization'=>'Bearer clearbit_key'}, body: query.to_json).
+      to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
-      Clearbit::Discovery.search(name: 'stripe')
-    end
+    Clearbit::Discovery.search(name: 'stripe')
   end
 end
