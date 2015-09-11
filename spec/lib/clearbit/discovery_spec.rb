@@ -5,7 +5,7 @@ describe Clearbit::Discovery do
     Clearbit.key = 'clearbit_key'
   end
 
-  it 'should call out to the Discovery API' do
+  it 'returns results from the Discovery API' do
     body  = []
     query = {query: [{name: 'stripe'}]}
 
