@@ -1,8 +1,6 @@
 require 'nestful'
 require 'clearbit/version'
 
-require 'net-http-spy'
-
 module Clearbit
   def self.api_key=(value)
     Base.key = value

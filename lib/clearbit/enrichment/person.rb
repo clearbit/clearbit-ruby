@@ -9,16 +9,10 @@ module Clearbit
           values = {:id => values}
         end
 
-        if email = values[:email]
+        if email = values.delete(:email)
           response = get(uri(:email, email), values)
 
-        elsif twitter = values[:twitter]
-          response = get(uri(:twitter, twitter), values)
-
-        elsif github = values[:github]
-          response = get(uri(:github, github), values)
-
-        elsif id = values[:id]
+        elsif id = values.delete(:id)
           response = get(id, values)
 
         else
