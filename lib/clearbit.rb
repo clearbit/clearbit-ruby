@@ -19,12 +19,10 @@ module Clearbit
   end
 
   autoload :Base, 'clearbit/base'
-  autoload :Company, 'clearbit/company'
-  autoload :CompanySearch, 'clearbit/company_search'
+  autoload :Enrichment, 'clearbit/enrichment'
+  autoload :Discovery, 'clearbit/discovery'
   autoload :Logo, 'clearbit/logo'
   autoload :Mash, 'clearbit/mash'
-  autoload :Person, 'clearbit/person'
-  autoload :PersonCompany, 'clearbit/person_company'
   autoload :Prospector, 'clearbit/prospector'
   autoload :Resource, 'clearbit/resource'
   autoload :Streaming, 'clearbit/streaming'

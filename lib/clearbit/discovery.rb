@@ -1,6 +1,6 @@
 module Clearbit
-  class CompanySearch < Base
-    endpoint 'https://company.clearbit.com'
+  class Discovery < Base
+    endpoint 'https://discovery.clearbit.com'
     path '/v1/companies/search'
 
     class PagedResult < Delegator
@@ -25,7 +25,7 @@ module Clearbit
         end
 
         if results.any?
-          search = CompanySearch.search(
+          search = Discovery.search(
             @params[:query],
             @params.merge(page: page + 1)
           )
@@ -34,16 +34,13 @@ module Clearbit
       end
     end
 
-    def self.search(query, params = {})
-      options  = params.delete(:request) || {}
-      options  = options.merge(format: :json)
+    def self.search(query, values = {})
+      query  = [query] if query.is_a?(Hash)
+      values = values.merge(query: query)
 
-      query    = [query] if query.is_a?(Hash)
-      params   = params.merge(query: query)
+      response = post('', values)
 
-      response = post('', params, options)
-
-      PagedResult.new(params, response)
+      PagedResult.new(values, response)
     end
   end
 end

@@ -5,6 +5,7 @@ $LOAD_PATH << File.join(File.dirname(__FILE__))
 require 'rubygems'
 require 'rspec'
 require 'pry'
+require 'webmock/rspec'
 
 # Library
 require 'clearbit'

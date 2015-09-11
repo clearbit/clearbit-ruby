@@ -1,3 +1,3 @@
 module Clearbit
-  VERSION = "0.1.7.pre"
+  VERSION = "0.2.0"
 end

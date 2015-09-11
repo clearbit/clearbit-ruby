@@ -3,8 +3,8 @@ module Clearbit
     endpoint 'https://prospector.clearbit.com'
     path '/v1/people'
 
-    def self.search(params = {})
-      self.new get('search', params)
+    def self.search(values = {})
+      self.new get('search', values)
     end
   end
 end
