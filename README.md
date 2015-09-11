@@ -35,7 +35,7 @@ person  = result.person
 company = result.company
 ```
 
-If a person or company can't be found, then they'll be `nil`.
+Passing the `stream` option makes the operation blocking - it could hang for 4-5 seconds if we haven't seen the email before. Alternatively you can use our [webhook](https://clearbit.com/docs#webhooks) API. If a person or company can't be found, then they'll be `nil`.
 
 See the [documentation](https://clearbit.com/docs#person-api) for more information.
 
@@ -50,6 +50,10 @@ company = Clearbit::Enrichment::Company.find(domain: 'uber.com', stream: true)
 If the company can't be found, then `nil` will be returned.
 
 See the [documentation](https://clearbit.com/docs#company-api) for more information.
+
+## Other APIs
+
+For more info on our other APIs (such as the Watchlist or Discover APIs), please see our [main documentation](https://clearbit.com/docs).
 
 ## Webhooks
 
