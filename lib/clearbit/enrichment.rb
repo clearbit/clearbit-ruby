@@ -4,8 +4,12 @@ module Clearbit
     autoload :Person, 'clearbit/enrichment/person'
     autoload :PersonCompany, 'clearbit/enrichment/person_company'
 
-    def find(*args)
-      PersonCompany.find(*args)
+    def find(values)
+      if domain = values[:domain]
+        Company.find(values)
+      else
+        PersonCompany.find(values)
+      end
     end
   end
 end

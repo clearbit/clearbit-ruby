@@ -18,6 +18,29 @@ describe Clearbit::Enrichment do
 
       Clearbit::Enrichment.find(email: 'test@example.com')
     end
+
+    it 'uses streaming option' do
+      body = {
+        person: nil,
+        company: nil
+      }
+
+      stub_request(:get, "https://person-stream.clearbit.com/v1/combined/test@example.com").
+        with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
+        to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
+
+      Clearbit::Enrichment.find(email: 'test@example.com', stream: true)
+    end
+
+    it 'should use the Company API if domain is provided' do
+      body = {}
+
+      stub_request(:get, "https://company.clearbit.com/v1/companies/domain/example.com").
+        with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
+        to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
+
+      Clearbit::Enrichment.find(domain: 'example.com')
+    end
   end
 
   context 'person API' do
