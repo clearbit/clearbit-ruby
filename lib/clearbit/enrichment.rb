@@ -8,7 +8,7 @@ module Clearbit
       if domain = values[:domain]
         result = Company.find(values)
 
-        if result.pending?
+        if result && result.pending?
           Pending.new
         else
           PersonCompany.new(company: result)

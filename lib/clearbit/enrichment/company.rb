@@ -11,10 +11,8 @@ module Clearbit
 
         if domain = values.delete(:domain)
           response = get(uri(:domain, domain), values)
-
         elsif id = values.delete(:id)
           response = get(id, values)
-
         else
           raise ArgumentError, 'Invalid values'
         end
@@ -24,7 +22,6 @@ module Clearbit
         else
           self.new(response)
         end
-
       rescue Nestful::ResourceNotFound
       end
 
