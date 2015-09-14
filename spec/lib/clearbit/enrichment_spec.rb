@@ -12,7 +12,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person.clearbit.com/v1/combined/test@example.com").
+      stub_request(:get, "https://person.clearbit.com/v1/combined/email/test@example.com").
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -25,7 +25,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person-stream.clearbit.com/v1/combined/test@example.com").
+      stub_request(:get, "https://person-stream.clearbit.com/v1/combined/email/test@example.com").
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -38,7 +38,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person.clearbit.com/v1/combined/test@example.com").
+      stub_request(:get, "https://person.clearbit.com/v1/combined/email/test@example.com").
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 202, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 

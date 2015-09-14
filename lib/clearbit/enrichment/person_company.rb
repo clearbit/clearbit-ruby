@@ -10,7 +10,7 @@ module Clearbit
         end
 
         if email = values.delete(:email)
-          response = get(uri(email), values)
+          response = get(uri(:email, email), values)
         else
           raise ArgumentError, 'Invalid values'
         end
