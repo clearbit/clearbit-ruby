@@ -1,3 +1,5 @@
+require 'delegate'
+
 module Clearbit
   class Discovery < Base
     endpoint 'https://discovery.clearbit.com'
