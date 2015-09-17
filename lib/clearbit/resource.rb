@@ -99,9 +99,15 @@ module Clearbit
         uri.host = uri.host.gsub('.clearbit.com', '-stream.clearbit.com')
       end
 
-      Nestful::Request.new(
+      response = Nestful::Request.new(
         uri, options
       ).execute
+
+      if notice = response.headers['X-API-Warn']
+        Kernel.warn notice
+      end
+
+      response
     end
 
     def uri(*parts)
