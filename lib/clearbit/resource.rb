@@ -50,12 +50,16 @@ module Clearbit
     OPTION_KEYS = %i{
       params key headers stream
       proxy user password auth_type
-      timeout ssl_options
+      timeout ssl_options request
     }
 
     def self.parse_values(values)
       params  = values.reject {|k,_| OPTION_KEYS.include?(k) }
       options = values.select {|k,_| OPTION_KEYS.include?(k) }
+
+      if request_options = options.delete(:request)
+        options.merge!(request_options)
+      end
 
       [params, options]
     end

@@ -32,6 +32,19 @@ describe Clearbit::Enrichment do
       Clearbit::Enrichment.find(email: 'test@example.com', stream: true)
     end
 
+    it 'accepts request option' do
+      body = {
+        person: nil,
+        company: nil
+      }
+
+      stub_request(:get, "https://person.clearbit.com/v1/combined/email/test@example.com").
+        with(:headers => {'Authorization'=>'Bearer clearbit_key', 'X-Rated' => 'true'}).
+        to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
+
+      Clearbit::Enrichment.find(email: 'test@example.com', request: {headers: {'X-Rated' => 'true'}})
+    end
+
     it 'returns pending? if 202 response' do
       body = {
         person: nil,
