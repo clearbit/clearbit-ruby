@@ -26,7 +26,6 @@ module Clearbit
   autoload :Pending, 'clearbit/pending'
   autoload :Prospector, 'clearbit/prospector'
   autoload :Resource, 'clearbit/resource'
-  autoload :Streaming, 'clearbit/streaming'
   autoload :Watchlist, 'clearbit/watchlist'
   autoload :Webhook, 'clearbit/webhook'
 
