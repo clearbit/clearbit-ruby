@@ -7,6 +7,26 @@ module Clearbit
       self.new get('search', values)
     end
 
+    def self.find(values)
+      unless values.is_a?(Hash)
+        values = {:id => values}
+      end
+
+      if id = values.delete(:id)
+        response = get(id, values)
+
+      else
+        raise ArgumentError, 'Invalid values'
+      end
+
+      self.new(response)
+    rescue Nestful::ResourceNotFound
+    end
+
+    class << self
+      alias_method :[], :find
+    end
+
     def email
       email_response.email
     end
