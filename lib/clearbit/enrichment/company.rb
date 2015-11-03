@@ -9,8 +9,8 @@ module Clearbit
           values = {:id => values}
         end
 
-        if domain = values.delete(:domain)
-          response = get(uri(:domain, domain), values)
+        if values.key?(:domain)
+          response = get(uri(:find), values)
         elsif id = values.delete(:id)
           response = get(id, values)
         else

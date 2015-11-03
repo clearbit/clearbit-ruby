@@ -9,12 +9,10 @@ module Clearbit
           values = {:id => values}
         end
 
-        if email = values.delete(:email)
-          response = get(uri(:email, email), values)
-
+        if values.key?(:email)
+          response = get(uri(:find), values)
         elsif id = values.delete(:id)
           response = get(id, values)
-
         else
           raise ArgumentError, 'Invalid values'
         end

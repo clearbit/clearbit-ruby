@@ -12,7 +12,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person.clearbit.com/v1/combined/email/test@example.com").
+      stub_request(:get, 'https://person.clearbit.com/v1/combined/find?email=test@example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -25,7 +25,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person-stream.clearbit.com/v1/combined/email/test@example.com").
+      stub_request(:get, 'https://person-stream.clearbit.com/v1/combined/find?email=test@example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -38,7 +38,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person.clearbit.com/v1/combined/email/test@example.com").
+      stub_request(:get, 'https://person.clearbit.com/v1/combined/find?email=test@example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key', 'X-Rated' => 'true'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -51,7 +51,7 @@ describe Clearbit::Enrichment do
         company: nil
       }
 
-      stub_request(:get, "https://person.clearbit.com/v1/combined/email/test@example.com").
+      stub_request(:get, 'https://person.clearbit.com/v1/combined/find?email=test@example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 202, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -63,7 +63,7 @@ describe Clearbit::Enrichment do
     it 'should use the Company API if domain is provided' do
       body = {}
 
-      stub_request(:get, "https://company.clearbit.com/v1/companies/domain/example.com").
+      stub_request(:get, 'https://company.clearbit.com/v1/companies/find?domain=example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -75,7 +75,7 @@ describe Clearbit::Enrichment do
     it 'should call out to the person API' do
       body = {}
 
-      stub_request(:get, "https://person.clearbit.com/v1/people/email/test@example.com").
+      stub_request(:get, 'https://person.clearbit.com/v1/people/find?email=test@example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -87,7 +87,7 @@ describe Clearbit::Enrichment do
     it 'should call out to the company API' do
       body = {}
 
-      stub_request(:get, "https://company.clearbit.com/v1/companies/domain/example.com").
+      stub_request(:get, 'https://company.clearbit.com/v1/companies/find?domain=example.com').
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
