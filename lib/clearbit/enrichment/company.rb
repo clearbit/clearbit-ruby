@@ -30,7 +30,7 @@ module Clearbit
       end
 
       def flag!(attrs = {})
-        self.class.post(uri('/v1/companies/flag'), attrs)
+        self.class.post(uri(:flag), attrs)
       end
     end
   end
