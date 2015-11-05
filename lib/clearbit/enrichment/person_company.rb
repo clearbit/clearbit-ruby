@@ -2,7 +2,7 @@ module Clearbit
   module Enrichment
     class PersonCompany < Base
       endpoint 'https://person.clearbit.com'
-      path '/v1/combined'
+      path '/v2/combined'
 
       def self.find(values)
         unless values.is_a?(Hash)

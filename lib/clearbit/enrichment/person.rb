@@ -2,7 +2,7 @@ module Clearbit
   module Enrichment
     class Person < Base
       endpoint 'https://person.clearbit.com'
-      path '/v1/people'
+      path '/v2/people'
 
       def self.find(values)
         unless values.is_a?(Hash)
@@ -31,7 +31,7 @@ module Clearbit
       end
 
       def flag!(attrs = {})
-        self.class.post(uri('flag'), attrs)
+        self.class.post(uri('/v1/people/flag'), attrs)
       end
     end
   end
