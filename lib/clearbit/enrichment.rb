@@ -5,7 +5,7 @@ module Clearbit
     autoload :PersonCompany, 'clearbit/enrichment/person_company'
 
     def find(values)
-      if values[:domain]
+      if values.key?(:domain)
         result = Company.find(values)
 
         if result && result.pending?
