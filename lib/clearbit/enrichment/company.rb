@@ -6,13 +6,11 @@ module Clearbit
 
       def self.find(values)
         unless values.is_a?(Hash)
-          values = {:id => values}
+          values = { domain: values }
         end
 
         if values.key?(:domain)
           response = get(uri(:find), values)
-        elsif id = values.delete(:id)
-          response = get(id, values)
         else
           raise ArgumentError, 'Invalid values'
         end
