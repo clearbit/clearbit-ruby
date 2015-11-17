@@ -2,15 +2,15 @@ module Clearbit
   module Enrichment
     class Company < Base
       endpoint 'https://company.clearbit.com'
-      path '/v1/companies'
+      path '/v2/companies'
 
       def self.find(values)
         unless values.is_a?(Hash)
-          values = {:id => values}
+          values = { id: values }
         end
 
-        if domain = values.delete(:domain)
-          response = get(uri(:domain, domain), values)
+        if values.key?(:domain)
+          response = get(uri(:find), values)
         elsif id = values.delete(:id)
           response = get(id, values)
         else
@@ -30,7 +30,7 @@ module Clearbit
       end
 
       def flag!(attrs = {})
-        self.class.post(uri('flag'), attrs)
+        self.class.post(uri(:flag), attrs)
       end
     end
   end

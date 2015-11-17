@@ -2,15 +2,15 @@ module Clearbit
   module Enrichment
     class PersonCompany < Base
       endpoint 'https://person.clearbit.com'
-      path '/v1/combined'
+      path '/v2/combined'
 
       def self.find(values)
         unless values.is_a?(Hash)
-          values = {:id => values}
+          values = { email: values }
         end
 
-        if email = values.delete(:email)
-          response = get(uri(:email, email), values)
+        if values.key?(:email)
+          response = get(uri(:find), values)
         else
           raise ArgumentError, 'Invalid values'
         end
