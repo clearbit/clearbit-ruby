@@ -31,9 +31,11 @@ module Clearbit
       email_response.email
     end
 
-    def verified?
+    def verified
       email_response.verified
     end
+
+    alias_method :verified?, :verified
 
     protected
 
