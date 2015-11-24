@@ -18,7 +18,7 @@ module Clearbit
       @options ||= {}
       @options.merge!(value) if value
 
-      if superclass <= self && superclass.respond_to?(:options)
+      if superclass.respond_to?(:options)
         Nestful::Helpers.deep_merge(superclass.options, @options)
       else
         @options
