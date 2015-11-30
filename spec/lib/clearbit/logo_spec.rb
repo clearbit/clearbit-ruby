@@ -3,38 +3,41 @@ require 'spec_helper'
 describe Clearbit::Logo do
   context 'domain validation' do
 
-    def check_valid_domain(domain)
-      expect {
-        Clearbit::Logo.url({
-          domain: domain
-        })
-      }.not_to raise_error
-    end
-
     def check_invalid_domain(domain)
-      expect {
-        Clearbit::Logo.url({
-          domain: domain
-        })
-      }.to raise_error(ArgumentError)
     end
 
     it 'passes for simple domains' do
-      check_valid_domain('clearbit.com')
+      expect {
+        Clearbit::Logo.url(domain: 'clearbit.com')
+      }.to_not raise_error
     end
 
     it 'passes for dashed domains' do
-      check_valid_domain('clear-bit.com')
-      check_valid_domain('clear--bit.com.uk')
+      expect {
+        Clearbit::Logo.url(domain: 'clear-bit.com')
+      }.to_not raise_error
     end
 
     it 'passes for multi-dot TLDs' do
-      check_valid_domain('bbc.co.uk')
-      check_valid_domain('clear-bit.co.uk')
+      expect {
+        Clearbit::Logo.url(domain: 'bbc.co.uk')
+      }.to_not raise_error
+
+      expect {
+        Clearbit::Logo.url(domain: 'clear-bit.co.uk')
+      }.to_not raise_error
+    end
+
+    it 'passes for new-style tlds' do
+      expect {
+        Clearbit::Logo.url(domain: 'clearbit.museum')
+      }.to_not raise_error
     end
 
     it 'fails for invalid urls' do
-      check_invalid_domain('clearbit.verylongtld')
+      expect {
+        Clearbit::Logo.url(domain: 'clearbit')
+      }.to raise_error(ArgumentError)
     end
   end
 end
