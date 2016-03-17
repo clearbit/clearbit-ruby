@@ -61,6 +61,13 @@ module Clearbit
         options.merge!(request_options)
       end
 
+      if key = options.delete(:key)
+        options.merge(
+          auth_type: :bearer,
+          password:  key
+        )
+      end
+
       [params, options]
     end
 
