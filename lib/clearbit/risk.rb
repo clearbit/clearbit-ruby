@@ -8,11 +8,11 @@ module Clearbit
     end
 
     def self.confirmed(values = {})
-      self.new post('confirmed', values)
+      post('confirmed', values)
     end
 
     def self.flag(values = {})
-      self.new post('flag', values)
+      post('flag', values)
     end
   end
 end
