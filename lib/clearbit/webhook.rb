@@ -14,12 +14,16 @@ module Clearbit
       # The global Clearbit.key can be overriden for multi-tenant apps using multiple Clearbit keys
       key = key || clearbit_key
 
-      signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), key, body)
+      signature = generate_signature(key, body)
       Rack::Utils.secure_compare(request_signature, signature)
     end
 
     def self.valid!(signature, body, key = nil)
       valid?(signature, body, key) ? true : raise(Errors::InvalidWebhookSignature.new)
+    end
+
+    def self.generate_signature(key, body)
+      'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), key, body)
     end
 
     def initialize(env, key = nil)
