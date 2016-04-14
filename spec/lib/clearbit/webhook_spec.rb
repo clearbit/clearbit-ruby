@@ -1,14 +1,16 @@
 require 'spec_helper'
 
 describe Clearbit::Webhook, 'valid!' do
+  let(:clearbit_key) { 'clearbit_key' }
+
   context 'clearbit key set globally' do
     before do
-      Clearbit.key = 'clearbit_key'
+      Clearbit.key = clearbit_key
     end
 
     context 'valid signature' do
       it 'returns true' do
-        signature = generate_signature('A-OK')
+        signature = generate_signature(clearbit_key, 'A-OK')
 
         result = Clearbit::Webhook.valid!(signature, 'A-OK')
 
@@ -18,7 +20,7 @@ describe Clearbit::Webhook, 'valid!' do
 
     context 'invalid signature' do
       it 'returns false' do
-        signature = generate_signature('A-OK')
+        signature = generate_signature(clearbit_key, 'A-OK')
 
         expect {
           Clearbit::Webhook.valid!(signature, 'TAMPERED_WITH_BODY_BEWARE!')
@@ -31,7 +33,7 @@ describe Clearbit::Webhook, 'valid!' do
     context 'valid signature' do
       it 'returns true' do
         clearbit_key = 'clearbit_key'
-        signature = generate_signature('A-OK')
+        signature = generate_signature(clearbit_key, 'A-OK')
 
         result = Clearbit::Webhook.valid!(signature, 'A-OK', clearbit_key)
 
@@ -42,7 +44,7 @@ describe Clearbit::Webhook, 'valid!' do
     context 'invalid signature' do
       it 'returns false' do
         clearbit_key = 'clearbit_key'
-        signature = generate_signature('A-OK')
+        signature = generate_signature(clearbit_key, 'A-OK')
 
         expect {
           Clearbit::Webhook.valid!(signature, 'TAMPERED_WITH_BODY_BEWARE!', clearbit_key)
@@ -53,13 +55,15 @@ describe Clearbit::Webhook, 'valid!' do
 end
 
 describe Clearbit::Webhook, 'initialize' do
+  let(:clearbit_key) { 'clearbit_key' }
+
   let(:env) do
     request_body = JSON.dump(id:'123', type: 'person', body: nil, status: 404)
 
     Rack::MockRequest.env_for('/webhook',
       method: 'POST',
       input:  request_body,
-      'HTTP_X_REQUEST_SIGNATURE' => generate_signature(request_body)
+      'HTTP_X_REQUEST_SIGNATURE' => generate_signature(clearbit_key, request_body)
     )
   end
 
