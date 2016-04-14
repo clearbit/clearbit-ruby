@@ -28,11 +28,11 @@ module Clearbit
     end
 
     def email
-      email_response.email
+      self[:email] || email_response.email
     end
 
     def verified
-      email_response.verified
+      self[:verified] || email_response.verified
     end
 
     alias_method :verified?, :verified
