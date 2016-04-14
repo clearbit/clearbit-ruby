@@ -8,18 +8,21 @@ module Clearbit
       Clearbit.key!
     end
 
-    def self.valid?(request_signature, body)
+    def self.valid?(request_signature, body, key = nil)
       return false unless request_signature && body
 
-      signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), clearbit_key, body)
+      # The global Clearbit.key can be overriden for multi-tenant apps using multiple Clearbit keys
+      key = key || clearbit_key
+
+      signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), key, body)
       Rack::Utils.secure_compare(request_signature, signature)
     end
 
-    def self.valid!(signature, body)
-      valid?(signature, body) ? true : raise(Errors::InvalidWebhookSignature.new)
+    def self.valid!(signature, body, key = nil)
+      valid?(signature, body, key) ? true : raise(Errors::InvalidWebhookSignature.new)
     end
 
-    def initialize(env)
+    def initialize(env, key = nil)
       request = Rack::Request.new(env)
 
       request.body.rewind
@@ -27,7 +30,7 @@ module Clearbit
       signature = request.env['HTTP_X_REQUEST_SIGNATURE']
       body      = request.body.read
 
-      self.class.valid!(signature, body)
+      self.class.valid!(signature, body, key)
 
       merge!(JSON.parse(body))
     end

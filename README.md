@@ -72,3 +72,9 @@ post '/v1/webhooks/clearbit' do
   end
 end
 ```
+
+The global Clearbit.key can be overriden for multi-tenant apps using multiple Clearbit keys like so:
+
+```ruby
+webhook = Clearbit::Webhook.new(env, 'CLEARBIT_KEY')
+```
