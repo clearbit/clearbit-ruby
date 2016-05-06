@@ -33,6 +33,10 @@ module Clearbit
           search.each(&block)
         end
       end
+
+      def map(&block)
+        each.map(&block)
+      end
     end
 
     def self.search(values = {})
