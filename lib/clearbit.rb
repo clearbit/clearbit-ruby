@@ -21,6 +21,7 @@ module Clearbit
   autoload :Autocomplete, 'clearbit/autocomplete'
   autoload :Base, 'clearbit/base'
   autoload :Enrichment, 'clearbit/enrichment'
+  autoload :IPCompany, 'clearbit/ipcompany'
   autoload :Discovery, 'clearbit/discovery'
   autoload :Logo, 'clearbit/logo'
   autoload :Mash, 'clearbit/mash'
