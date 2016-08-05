@@ -12,7 +12,7 @@ module Clearbit
       return false unless request_signature && body
 
       # The global Clearbit.key can be overriden for multi-tenant apps using multiple Clearbit keys
-      key = key || clearbit_key
+      key = (key || clearbit_key).gsub(/\A(pk|sk)_/, '')
 
       signature = generate_signature(key, body)
       Rack::Utils.secure_compare(request_signature, signature)
