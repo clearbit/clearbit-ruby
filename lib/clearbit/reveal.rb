@@ -4,7 +4,7 @@ module Clearbit
     path '/v1/companies'
 
     def self.find(values)
-      self.new(get(uri, values))
+      self.new(get(:find, values))
     rescue Nestful::ResourceNotFound
     end
 
