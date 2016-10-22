@@ -62,7 +62,7 @@ module Clearbit
       end
 
       if key = options.delete(:key)
-        options.merge(
+        options.merge!(
           auth_type: :bearer,
           password:  key
         )
