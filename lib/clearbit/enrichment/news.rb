@@ -11,7 +11,7 @@ module Clearbit
           raise ArgumentError, 'Invalid values'
         end
 
-        self.new(response)
+        new(response)
       end
     end
   end
