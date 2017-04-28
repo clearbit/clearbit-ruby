@@ -1,6 +1,7 @@
 module Clearbit
   module Enrichment extend self
     autoload :Company, 'clearbit/enrichment/company'
+    autoload :News, 'clearbit/enrichment/news'
     autoload :Person, 'clearbit/enrichment/person'
     autoload :PersonCompany, 'clearbit/enrichment/person_company'
 
