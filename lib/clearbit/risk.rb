@@ -4,7 +4,7 @@ module Clearbit
     path '/v1'
 
     def self.calculate(values = {})
-      self.new get('calculate', values)
+      self.new post('calculate', values)
     end
 
     def self.confirmed(values = {})
