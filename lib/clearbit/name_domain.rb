@@ -4,7 +4,8 @@ module Clearbit
     path '/v1/domains'
 
     def self.find(values)
-      Mash.new get(uri(:find), values)
+      response = get(uri(:find), values)
+      Mash.new(response.decoded)
     rescue Nestful::ResourceNotFound
     end
 
