@@ -20,10 +20,11 @@ module Clearbit
 
   autoload :Autocomplete, 'clearbit/autocomplete'
   autoload :Base, 'clearbit/base'
-  autoload :Enrichment, 'clearbit/enrichment'
   autoload :Discovery, 'clearbit/discovery'
+  autoload :Enrichment, 'clearbit/enrichment'
   autoload :Logo, 'clearbit/logo'
   autoload :Mash, 'clearbit/mash'
+  autoload :NameDomain, 'clearbit/name_domain'
   autoload :Pending, 'clearbit/pending'
   autoload :Prospector, 'clearbit/prospector'
   autoload :Resource, 'clearbit/resource'
