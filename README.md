@@ -78,3 +78,14 @@ The global Clearbit.key can be overriden for multi-tenant apps using multiple Cl
 ```ruby
 webhook = Clearbit::Webhook.new(env, 'CLEARBIT_KEY')
 ```
+
+## Proxy Support
+
+Passing the proxy option allows you to specify a proxy server to pass the request through.
+
+``` ruby
+company = Clearbit::Enrichment::Company.find(
+  domain: 'uber.com',
+  proxy: 'https://user:password@proxyserver.tld:8080'
+)
+```
