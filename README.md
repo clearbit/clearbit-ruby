@@ -62,7 +62,7 @@ For rack apps use the `Clearbit::Webhook` module to wrap deserialization and ver
 ``` ruby
 post '/v1/webhooks/clearbit' do
   begin
-    webhook = Clearbit::Webhook.new(env)
+    webhook = Clearbit::Webhook.new(request.env)
     webhook.type #=> 'person'
     webhook.body.name.given_name #=> 'Alex'
 
@@ -76,7 +76,7 @@ end
 The global Clearbit.key can be overriden for multi-tenant apps using multiple Clearbit keys like so:
 
 ```ruby
-webhook = Clearbit::Webhook.new(env, 'CLEARBIT_KEY')
+webhook = Clearbit::Webhook.new(request.env, 'CLEARBIT_KEY')
 ```
 
 ## Proxy Support
