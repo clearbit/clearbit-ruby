@@ -38,6 +38,14 @@ company = result.company
 Passing the `stream` option makes the operation blocking - it could hang for 4-5 seconds if we haven't seen the email before. Alternatively you can use our [webhook](https://clearbit.com/docs#webhooks) API. If a person or company can't be found, then they'll be `nil`.
 
 See the [documentation](https://clearbit.com/docs#person-api) for more information.
+## Name to Domain
+
+To find the domain based on the name of a resource, you can use the `NameDomain` API.
+
+```ruby
+name = Clearbit::NameDomain.find(name: 'Uber')
+```
+For more information look at the [documentation](https://dashboard.clearbit.com/docs?ruby#name-to-domain-api).
 
 ## Company lookup
 
