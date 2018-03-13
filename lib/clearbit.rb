@@ -18,6 +18,7 @@ module Clearbit
     key || raise('Clearbit.key not set')
   end
 
+  autoload :Audiences, 'clearbit/audiences'
   autoload :Autocomplete, 'clearbit/autocomplete'
   autoload :Base, 'clearbit/base'
   autoload :Discovery, 'clearbit/discovery'
