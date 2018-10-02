@@ -1,8 +1,9 @@
 require 'clearbit'
-require 'pp'
 
-people = Clearbit::Prospector.search(domain: 'clearbit.com')
+response = Clearbit::Prospector.search(domain: 'clearbit.com')
 
-people.each do |person|
-  puts [person.name.full_name, person.email]
+puts "Displaying #{response[:results].size} of #{response[:total]} results:"
+
+response[:results].each_with_index do |person, index|
+  puts "  #{index + 1}. #{person.name.full_name} (#{person.email})"
 end
