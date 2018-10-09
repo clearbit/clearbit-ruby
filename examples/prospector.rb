@@ -1,6 +1,6 @@
 require 'clearbit'
 
-response = Clearbit::Prospector.search(domain: 'clearbit.com')
+response = Clearbit::Prospector.search(domain: 'clearbit.com', page: 1)
 
 puts "Displaying #{response[:results].size} of #{response[:total]} results:"
 
