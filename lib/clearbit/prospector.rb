@@ -1,7 +1,7 @@
 module Clearbit
   class Prospector < Base
     endpoint 'https://prospector.clearbit.com'
-    path '/v2/people'
+    path '/v1/people'
 
     def self.search(values = {})
       self.new get('search', values)

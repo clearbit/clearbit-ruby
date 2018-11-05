@@ -9,7 +9,7 @@ describe Clearbit::Prospector do
     it 'calls the Prospector API' do
       body = { page: 1, page_size: 5, total: 723, results: [] }
 
-      stub_request(:get, "https://prospector.clearbit.com/v2/people/search?domain=stripe.com").
+      stub_request(:get, "https://prospector.clearbit.com/v1/people/search?domain=stripe.com").
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
@@ -19,7 +19,7 @@ describe Clearbit::Prospector do
     it 'can page through records' do
       body = { page: 2, page_size: 10, total: 12, results: [] }
 
-      stub_request(:get, "https://prospector.clearbit.com/v2/people/search?domain=stripe.com&page=2&page_size=10").
+      stub_request(:get, "https://prospector.clearbit.com/v1/people/search?domain=stripe.com&page=2&page_size=10").
         with(:headers => {'Authorization'=>'Bearer clearbit_key'}).
         to_return(:status => 200, :body => body.to_json, headers: {'Content-Type' => 'application/json'})
 
