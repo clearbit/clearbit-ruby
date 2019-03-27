@@ -35,9 +35,9 @@ person  = result.person
 company = result.company
 ```
 
-Passing the `stream` option makes the operation blocking - it could hang for 4-5 seconds if we haven't seen the email before. Alternatively you can use our [webhook](https://clearbit.com/docs#webhooks) API. If a person or company can't be found, then they'll be `nil`.
+Passing the `stream` option makes the operation blocking - it could hang for 4-5 seconds if we haven't seen the email before. Alternatively you can use our [webhook](https://clearbit.com/docs#webhooks) API.
 
-Without the `stream` option, the operation is non-blocking, we will immediately return a `Clearbit::Pending` object.
+Without the `stream` option, the operation is non-blocking, and we will immediately return either the enriched data or `Clearbit::Pending` object.
 
 ```ruby
 result = Clearbit::Enrichment.find(email: 'alex@alexmaccaw.com')
@@ -53,6 +53,8 @@ unless result.pending?
 end
 
 ```
+
+In either case, if a person or company can't be found, the result will be `nil`.
 
 See the [documentation](https://clearbit.com/docs#person-api) for more information.
 ## Name to Domain
