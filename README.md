@@ -90,7 +90,11 @@ Clearbit::Analytics.identify(
     company_domain: 'clearbit.com',     # Optional, but strongly recommended
     first_name: 'David', # Optional
     last_name: 'Lumley', # Optional
+    # … other analytical traits can also be sent, like the plan a user is on etc
   },
+  context: {
+    ip: request.ip # Optional, but strongly recommended when identifying users
+  }                # as part of a request when they sign up, or log in
 )
 ```
 
