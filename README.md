@@ -78,6 +78,22 @@ If the company can't be found, then `nil` will be returned.
 
 See the [documentation](https://clearbit.com/docs#company-api) for more information.
 
+## Analytics
+
+Identify users by sending their `user_id`, and adding details like their `email` and `company_domain` to create People and Companies inside of Clearbit X.
+
+```ruby
+Clearbit::Analytics.identify(
+  user_id: '1234', # Required
+  traits: {
+    email: 'david@clearbitexample.com', # Optional, but strongly recommended
+    company_domain: 'clearbit.com',     # Optional, but strongly recommended
+    first_name: 'David', # Optional
+    last_name: 'Lumley', # Optional
+  },
+)
+```
+
 ## Other APIs
 
 For more info on our other APIs (such as the Watchlist or Discover APIs), please see our [main documentation](https://clearbit.com/docs).

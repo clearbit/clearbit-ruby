@@ -1,5 +1,6 @@
 require 'nestful'
 require 'clearbit/version'
+require 'clearbit/analytics'
 
 module Clearbit
   def self.api_key=(value)
