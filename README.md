@@ -80,11 +80,16 @@ See the [documentation](https://clearbit.com/docs#company-api) for more informat
 
 ## Analytics
 
+*NOTE:* We **strongly** recommend using `clearbit.js` for Analytics and integrating with Clearbit X. It handles a lot of complexity, like generating `anonymous_id`s and associating them with `user_id`s when a user is identified. It also automatically tracks `page` views with the full data set.
+
+### Identifying Users
+
 Identify users by sending their `user_id`, and adding details like their `email` and `company_domain` to create People and Companies inside of Clearbit X.
 
 ```ruby
 Clearbit::Analytics.identify(
-  user_id: '1234', # Required
+  user_id: '1234', # Required if no anonymous_id is sent. The user's ID in your database.
+  anonymous_id: session[:anonymous_id], # Required if no user_id is sent. A UUID to track anonymous users.
   traits: {
     email: 'david@clearbitexample.com', # Optional, but strongly recommended
     company_domain: 'clearbit.com',     # Optional, but strongly recommended
@@ -93,8 +98,29 @@ Clearbit::Analytics.identify(
     # … other analytical traits can also be sent, like the plan a user is on etc
   },
   context: {
-    ip: request.ip # Optional, but strongly recommended when identifying users
-  }                # as part of a request when they sign up, or log in
+    ip: '89.102.33.1' # Optional, but strongly recommended when identifying users
+  }                   # as they sign up, or log in
+)
+```
+
+### Page Views
+
+Use the `page` method, and send the users `anonymous_id` along with the `url` they're viewing, and the `ip` the request comes from in order to create Companies inside of Clearbit X and track their page views.
+
+```ruby
+Clearbit::Analytics.page(
+  user_id: '1234', # Required if no anonymous_id is sent. The user's ID in your database.
+  anonymous_id: session[:anonymous_id], # Required if no user_id is sent. A UUID to track anonymous users.
+  name: 'Clearbit Ruby Library', # Optional, but strongly recommended
+  properties: {
+    url: 'https://github.com/clearbit/clearbit-ruby?utm_source=google', # Required. Likely to be request.referer
+    path: '/clearbit/clearbit-ruby', # Optional, but strongly recommended
+    search: '?utm_source=google', # Optional, but strongly recommended
+    referrer: nil, # Optional. Unlikely to be request.referrer.
+  },
+  context: {
+    ip: '89.102.33.1', # Optional, but strongly recommended.
+  },
 )
 ```
 

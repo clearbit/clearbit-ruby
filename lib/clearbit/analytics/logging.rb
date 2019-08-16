@@ -38,7 +38,7 @@ module Clearbit
                           logger.progname = 'Clearbit::Analytics'
                           logger
                         end
-          @logger = PrefixedLogger.new(base_logger, '[analytics-ruby]')
+          @logger = PrefixedLogger.new(base_logger, '[clearbit-ruby]')
         end
 
         attr_writer :logger
