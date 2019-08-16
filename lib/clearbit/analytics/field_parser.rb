@@ -170,7 +170,7 @@ module Clearbit
         end
 
         def add_context!(context)
-          context[:library] = { :name => 'analytics-ruby', :version => Clearbit::VERSION.to_s }
+          context[:library] = { :name => 'clearbit-ruby', :version => Clearbit::VERSION.to_s }
         end
 
         # private: Ensures that a string is non-empty
