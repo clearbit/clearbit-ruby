@@ -1,4 +1,3 @@
-require 'clearbit/analytics/version'
 require 'clearbit/analytics/defaults'
 require 'clearbit/analytics/utils'
 require 'clearbit/analytics/field_parser'

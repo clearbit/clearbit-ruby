@@ -8,7 +8,7 @@ module Clearbit
         SSL = true
         HEADERS = { 'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                    'User-Agent' => "clearbit-ruby/#{Analytics::VERSION}" }
+                    'User-Agent' => "clearbit-ruby/#{Clearbit::VERSION}" }
         RETRIES = 10
       end
 
