@@ -10,6 +10,14 @@ require 'clearbit/analytics/logging'
 
 module Clearbit
   class Analytics
+    # Proxy identify through to a client instance, in order to keep the client
+    # consistent with how the other Clearbit APIs are accessed
+    def self.identify(args)
+      analytics = new(write_key: Clearbit.key)
+      analytics.identify(args)
+      analytics.flush
+    end
+
     # Initializes a new instance of {Clearbit::Analytics::Client}, to which all
     # method calls are proxied.
     #
