@@ -25,6 +25,14 @@ module Clearbit
       analytics.flush
     end
 
+    # Proxy group through to a client instance, in order to keep the client
+    # consistent with how the other Clearbit APIs are accessed
+    def self.group(args)
+      analytics = new(write_key: Clearbit.key)
+      analytics.group(args)
+      analytics.flush
+    end
+
     # Initializes a new instance of {Clearbit::Analytics::Client}, to which all
     # method calls are proxied.
     #
