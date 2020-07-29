@@ -23,7 +23,9 @@ module Clearbit
     end
 
     def self.generate_signature(key, body)
-      'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), key, body)
+      signed_body = body
+      signed_body = JSON.dump(signed_body) unless signed_body.is_a?(String)
+      'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), key, signed_body)
     end
 
     def initialize(env, key = nil)
