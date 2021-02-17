@@ -56,6 +56,14 @@ end
 
 In either case, if a person or company can't be found, the result will be `nil`.
 
+### Set a timeout
+
+If you only want to wait a certain amount of time for the synchronous Clearbit API call to return before moving on, pass a `timeout` option to the `find` method as the number of seconds:
+
+```ruby
+result = Clearbit::Enrichment.find(email: 'alex@alexmaccaw.com', stream: true, timeout: 10)
+```
+
 See the [documentation](https://clearbit.com/docs#person-api) for more information.
 ## Name to Domain
 
